@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>A collection of general purpose utility classes and functions.</Description>
+    <Description>A C# library of general purpose utility classes and functions.</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/ara3d/ara3d/tree/main/src/Ara3D.Utils</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ara3d/utils</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ara3d/utils</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
