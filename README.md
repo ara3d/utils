@@ -8,5 +8,16 @@
 This library is intended to reduce the amount of code we have to write, and to lighten the cognitive load 
 making us more effective at programming. 
 
-Much of the code was adapted from solutions to problems found on StackOverflow.com. 
+Much of the code was adapted from solutions to problems found on StackOverflow.com, which were 
+not appropriate for any of the existing Ara 3D libraries. 
+
+## Appendix
+
+This repository contains WIP projects which are targeted to specific UI platforms or dev-ops.
+These project are not part of Nuget package. 
+
+* `Ara3D.Utils.Dev` 
+* `Ara3D.Utils.Wpf`
+* `Ara3D.Utils.Win32`
+* `Ara3D.Utils.WinForms` 
  
