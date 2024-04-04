@@ -62,6 +62,12 @@ namespace Ara3D.Utils
         public static string[] SplitAtNull(this string s)
             => s.Split('\0');
 
+        public static (string, string) SplitAtIndex(this string s, int index)
+            => (index >= 0 ? s.Substring(0, index) : "", s.Substring(index + 1));
+
+        public static (string, string) SplitAtChar(this string s, char c)
+            => s.SplitAtIndex(s.IndexOf(c));
+
         public static string[] SplitWhitespace(this string value)
             => value.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
 
@@ -107,6 +113,9 @@ namespace Ara3D.Utils
         /// </summary>
         public static string Quote(this string s, string beginQuote = "\"", string endQuote = null)
             => $"{beginQuote}{s}{endQuote ?? beginQuote}";
+
+        public static string ToHtmlAnchor(this string self)
+            => string.IsNullOrEmpty(self) ? "_" : self.ToLowerInvariant().ReplaceNonAlphaNumeric("-");
 
         public static string ToIdentifier(this string self)
             => string.IsNullOrEmpty(self) ? "_" : self.ReplaceNonAlphaNumeric("_");
@@ -162,5 +171,11 @@ namespace Ara3D.Utils
                 return text.Substring(subtext.Length);
             return text;
         }
+
+        public static string EscapeQuotes(this string text)
+            => text.Replace("\"", "\\\"");
+
+        public static string UnescapeQuotes(this string text)
+            => text.Replace("\\\"", "\"");
     }
 }

@@ -32,5 +32,15 @@ namespace Ara3D.Utils
 
         public HtmlBuilder WriteTaggedText(string tag, string text)
             => WriteStartTag(tag).WriteEscaped(text).WriteEndTag(tag);
+
+        public HtmlBuilder WriteHyperlink(string url, string text)
+            => WriteStartTag("a", ("href", url))
+                .WriteEscaped(text)
+                .WriteEndTag("a");
+
+        public HtmlBuilder WriteTaggedHyperlink(string tag, string url, string text)
+            => WriteStartTag(tag)
+                .WriteHyperlink(url, text)
+                .WriteEndTag(tag);
     }
 }
