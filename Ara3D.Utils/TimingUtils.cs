@@ -5,8 +5,8 @@ namespace Ara3D.Utils
 {
     public static class TimingUtils
     {
-        public static void TimeIt(this Action action, string label = "")
-            => TimeIt<bool>(action.ToFunction(), label);
+        public static void TimeIt(this Action action, string label = "", bool catchErrors = true)
+            => TimeIt<bool>(action.ToFunction(), label, catchErrors);
 
         public static Disposer TimeIt(string label = "")
         {
@@ -24,12 +24,22 @@ namespace Ara3D.Utils
         public static string MSecToSecondsString(long msec)
             => $"{msec / 1000}.{msec % 1000}";
 
-        public static T TimeIt<T>(this Func<T> function, string label = "")
+        public static T TimeIt<T>(this Func<T> function, string label = "", bool catchErrors = true)
         {
-            var sw = Stopwatch.StartNew();
-            var r = function();
-            sw.OutputTimeElapsed(label);
-            return r;
+            try
+            {
+                var sw = Stopwatch.StartNew();
+                var r = function();
+                sw.OutputTimeElapsed(label);
+                return r;
+            }
+            catch (Exception e)
+            {
+                if (!catchErrors)
+                    throw;
+                Console.WriteLine($"Error occurred {e.Message}");
+                return default;
+            }
         }
 
         public static DateTime JanFirst1970 = new DateTime(1970, 1, 1);

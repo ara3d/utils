@@ -459,7 +459,7 @@ namespace Ara3D.Utils
         /// <summary>
         /// Returns the file size in bytes, or 0 if there is no file.
         /// </summary>
-        public static string FileSizeAsString(this FilePath filePath, int numPlacesToShow = 1)
+        public static string GetFileSizeAsString(this FilePath filePath, int numPlacesToShow = 1)
             => BytesToString(GetFileSize(filePath), numPlacesToShow);
 
         /// <summary>

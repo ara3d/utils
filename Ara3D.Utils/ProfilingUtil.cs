@@ -80,7 +80,7 @@ namespace Ara3D.Utils
 
             // TODO: remove all console references
             Console.WriteLine(
-                $"Loading {fileName}\nof size {PathUtil.FileSizeAsString(fileName)}\ntakes {TimingUtils.MSecToSecondsString(msec)}\nconsumes {PathUtil.BytesToString(mem)}");
+                $"Loading {fileName}\nof size {PathUtil.GetFileSizeAsString(fileName)}\ntakes {TimingUtils.MSecToSecondsString(msec)}\nconsumes {PathUtil.BytesToString(mem)}");
             return file;
         }
     }
