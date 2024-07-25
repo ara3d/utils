@@ -108,14 +108,11 @@ namespace Ara3D.Utils
 
         /// <summary>
         /// Groups items using the key selector.
-        /// TODO: add DictionaryOfLists (or its this a MultiDictionary_
         /// </summary>
-        public static Dictionary<TKey, List<TValue>> ToDictionaryOfLists<T, TKey, TValue>
+        public static MultiDictionary<TKey, TValue> ToDictionaryOfLists<T, TKey, TValue>
             (this IEnumerable<T> self, Func<T, TKey> keySelector, Func<T, TValue> valueSelector)
-        {
-            var groups = self.GroupBy(keySelector);
-            return groups.ToDictionary(g => g.Key, g => g.Select(valueSelector).ToList());
-        }
+            => new MultiDictionary<TKey, TValue>(
+                self.Select(xs => (keySelector(xs), valueSelector(xs))));
 
         /// <summary>
         /// Groups items using the key selector.
