@@ -24,6 +24,14 @@ namespace Ara3D.Utils
             return tmp;
         }
 
+        public bool ContainsOrAdd(T key, out int index)
+        {
+            index = IndexOf(key);
+            if (index < 0) index = Add(key);
+            else return true;
+            return false;
+        }
+
         public IEnumerable<T> OrderedMembers()
             => this.OrderBy(kv => kv.Value).Select(kv => kv.Key);
     }

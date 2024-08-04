@@ -3,7 +3,7 @@ using System.IO.Compression;
 
 namespace Ara3D.Utils
 {
-    public static class CompressionUtil
+    public static class ZipUtil
     {
         public static byte[] UnGzipIfNeeded(this byte[] bytes)
         {
@@ -30,13 +30,13 @@ namespace Ara3D.Utils
         /// <summary>
         /// Zips a file and places the result into a newly created file in the temporary directory
         /// </summary>
-        public static string ZipFile(string filePath)
-            => ZipFile(filePath, Path.GetTempFileName());
+        public static FilePath Zip(this FilePath filePath)
+            => Zip(filePath, Path.GetTempFileName());
 
         /// <summary>
         /// Zips a file and places the result into a newly created file in the temporary directory
         /// </summary>
-        public static string ZipFile(string filePath, string outputFile)
+        public static FilePath Zip(this FilePath filePath, FilePath outputFile)
         {
             using (var za = new ZipArchive(File.OpenWrite(outputFile), ZipArchiveMode.Create))
             {
@@ -52,7 +52,7 @@ namespace Ara3D.Utils
         /// <summary>
         /// Unzips the first entry in an archive to a designated file, returning that file path.
         /// </summary>
-        public static string UnzipFile(string zipFilePath, string outputFile)
+        public static FilePath Unzip(this FilePath zipFilePath, FilePath outputFile)
         {
             using (var za = new ZipArchive(File.OpenRead(zipFilePath), ZipArchiveMode.Read))
             {
@@ -68,8 +68,8 @@ namespace Ara3D.Utils
         /// <summary>
         /// Unzips the first entry in an archive into a temp generated file, returning that file path
         /// </summary>
-        public static string UnzipFile(string zipFilePath)
-            => UnzipFile(zipFilePath, Path.GetTempFileName());
+        public static FilePath Unzip(this FilePath zipFilePath)
+            => Unzip(zipFilePath, Path.GetTempFileName());
 
         public static StreamWriter CreateAndOpenEntry(this ZipArchive archive, string entryName)
         {
