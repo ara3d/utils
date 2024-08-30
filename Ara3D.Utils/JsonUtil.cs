@@ -1,14 +1,17 @@
-﻿using System.Text.Json;
+﻿
+using System;
 
 namespace Ara3D.Utils
 {
     public static class JsonUtil
     {
         public static JsonText ToJson(this object obj)
-            => JsonSerializer.Serialize(obj, new JsonSerializerOptions { WriteIndented = true });
+            => throw new NotImplementedException();
+            //=> JsonSerializer.Serialize(obj, new JsonSerializerOptions { WriteIndented = true });
 
         public static T FromJson<T>(this JsonText json)
-            => JsonSerializer.Deserialize<T>(json.Value);
+            => throw new NotImplementedException();
+        //=> JsonSerializer.Deserialize<T>(json.Value);
 
         public static JsonText LoadJsonText(this FilePath fp)
             => fp.ReadAllText();
