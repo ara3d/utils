@@ -383,6 +383,12 @@ namespace Ara3D.Utils
             => Path.GetDirectoryName(filePath.GetFullPath());
 
         /// <summary>
+        /// Returns the full name of the path, resolving any relative paths as necessary. 
+        /// </summary>
+        public static DirectoryPath GetFullPath(this DirectoryPath dirPath)
+            => Path.GetFullPath(dirPath);
+
+        /// <summary>
         /// Changes the directory and the extension of a file
         /// </summary>
         public static FilePath ChangeDirectoryAndExt(this FilePath filePath, DirectoryPath newFolder, string newExt)
