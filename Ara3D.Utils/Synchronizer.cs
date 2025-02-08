@@ -27,7 +27,7 @@ namespace Ara3D.Utils
         public Synchronizer(SynchronizationContext context, bool acceptNull = false)
         {
             Context = context;
-
+            
             if (!acceptNull && context == null)
             {
                 throw new ArgumentNullException(
