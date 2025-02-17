@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Ara3D.Mathematics;
+using static System.Net.Mime.MediaTypeNames;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using ListBox = System.Windows.Controls.ListBox;
 using TabControl = System.Windows.Controls.TabControl;
@@ -97,6 +99,18 @@ namespace Ara3D.Utils.Wpf
             self.Add(r);
             return r;
         }
+
+        public static MenuItem? FindMenuItem(this Menu menu, string text)
+            => menu.Items.FindMenuItem(text);
+
+        public static bool HasText(this MenuItem menu, string text)
+            => menu.Header.ToString().RemoveChars("_").ToLowerInvariant() == text.ToLowerInvariant();
+
+        public static MenuItem? FindMenuItem(this MenuItem menu, string text)
+            => menu.HasText(text) ? menu :  menu.Items.FindMenuItem(text);
+
+        public static MenuItem? FindMenuItem(this ItemCollection items, string text)
+            => items.OfType<MenuItem>().FirstOrDefault(x => FindMenuItem(x, text) != null);
 
         public static MenuItem AddMenuItem(this MenuItem menu, string text, Action action = null)
             => menu.Items.AddMenuItem(text, action);
