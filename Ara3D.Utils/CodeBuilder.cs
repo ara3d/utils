@@ -12,7 +12,7 @@ namespace Ara3D.Utils
     {
         public StringBuilder sb { get; set; } = new StringBuilder();
         public bool AtNewLine { get; private set; }
-        public int IndentLevel { get; private set; }
+        public int IndentLevel { get; set; }
 
         public T Indent()
         {
